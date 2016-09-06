@@ -1,0 +1,367 @@
+JAVA 8:
+->With new java 8 release it provides support to functional programming,new javascript engine,new API for date time manipulation,new streaming API etc.
+
+The new features added in JAVA 8:
+
+1.Lambda expressions:Adds functional processing capability to java.
+
+2.Method references − Referencing functions by their names.
+
+3.Default method − Interface to have default method implementation.
+
+4.New tools − New compiler tools and utilities are added like ‘jdeps’ to figure out dependencies.
+
+5.Stream API − New stream API to facilitate pipeline processing.
+
+6.Date Time API − Improved date time API.
+
+7.Optional − Emphasis on best practices to handle null values properly.
+
+8.Nashorn, JavaScript Engine − A Java-based engine to execute JavaScript code.
+
+------------------------------------ Lammda Expressions ---------------------------------------------------
+
+->Lambda Expressions: Lambda expressions facilitate functional programming and improves development a lot.
+Functional programming is about writing pure functions, about removing hidden inputs and outputs as far as we can, so that as much of our code as possible just describes a relationship between inputs and outputs.A Java lambda expression is thus a function which can be created without belonging to any class. A lambda expression can be passed around as if it was an object and executed on demand.
+
+A lambda expression is an anonymous function (not 100% true for Java but lets assume it for time being). Simply put, it’s a method without a declaration, i.e., access modifier, return value declaration, and name.
+
+parameter -> expression body
+Lambda expressions in Java is usual written using syntax (argument) -> (body)
+
+Following are the important characteristics of a lambda expression −
+
+1.Optional type declaration − No need to declare the type of a parameter. The compiler can inference the same from the value of the parameter.
+
+2.Optional parenthesis around parameter − No need to declare a single parameter in parenthesis. For multiple parameters, parentheses are required.
+
+3.Optional curly braces − No need to use curly braces in expression body if the body contains a single statement.
+
+4.Optional return keyword − The compiler automatically returns the value if the body has a single expression to return the value. Curly braces are required to indicate that expression returns a value.
+
+->Lambda expressions eliminate the anonymous class and provides strong functional programming feature capability.
+
+->Lambda expressions throws error when a variable is assigned value the second time.
+
+Structure of Lambda Expressions:
+1.A lambda expression can have zero, one or more parameters.
+2.The type of the parameters can be explicitly declared or it can be inferred from the context. e.g. (int a) is same as just (a)
+Parameters are enclosed in parentheses and separated by commas. e.g. (a, b) or (int a, int b) or (String a, int b, float c)
+3.Empty parentheses are used to represent an empty set of parameters. e.g. () -> 42
+4.When there is a single parameter, if its type is inferred, it is not mandatory to use parentheses. e.g. a -> return a*a
+5.The body of the lambda expressions can contain zero, one or more statements.
+6.If body of lambda expression has single statement curly brackets are not mandatory and the return type of the anonymous function is the same as that of the body expression.
+7.When there is more than one statement in body than these must be enclosed in curly brackets (a code block) and the return type of the anonymous function is the same as the type of the value returned within the code block, or void if nothing is returned.
+
+---------------------------------------------------- Method References --------------------------------------------------------
+
+It is a feature related to Lambda expressions.It allows us to reference constructors or methods without executing them.method references helps to point methods by their names.A method reference is used by double colon ::.A method reference can be used to point the following types of methods static,instance and constructor using a new operator.Method References are compact, easy-to-read lambda expressions for methods that already have a name.
+
+Types of method references:
+
+1. Reference to static method.
+2. Reference to constructor.
+3. Reference to an arbitary object of particular type.
+4. Reference to an instant method of a particular object.
+
+
+--------------------------------------------------Functional Interfaces --------------------------------------------------------
+
+->Before Java 8 to instantiate an functional interface annonymous inner classes are used.
+
+->functional interfaces have single functionality to exhibit.Java 8 have defined many functional interfaces to be extensively used in Lambda expressions.There are many fuctinal interface which performs different functionality.
+
+->An interface with exactly one abstract method is called Functional Interface. @FunctionalInterface annotation is added so that we can mark an interface as functional interface.It is not mandatory to use it, but it’s best practice to use it with functional interfaces to avoid addition of extra methods accidentally. If the interface is annotated with @FunctionalInterface annotation and we try to have more than one abstract method, it throws compiler error.
+
+->The major benefit of java 8 functional interfaces is that we can use lambda expressions to instantiate them and avoid using bulky anonymous class implementation.
+
+->Java8 have defined many functional interfaces to be extensively used in lambda expressions
+
+-------------------------------------------------------------Default methods --------------------------------------------------
+
+Default method enables to add default methods to interface without breaking the classes that implements the interface.From java 8 we can have static methods and default methods in interfaces.Default methods allows developers to add new features to the interfaces without actually breaking the implementation of interfaces.
+
+Before java 8 feature the main problem was:
+
+Designing interfaces have always been a tough job because if we want to add additional methods in the interfaces, it will require change in all the implementing classes. As interface grows old, the number of classes implementing it might grow to an extent that it’s not possible to extend interfaces. That’s why when designing an application, most of the frameworks provide a base implementation class and then we extend it and override methods that are applicable for our application.
+
+->When to use default method over abstract classes?
+Abstract class can define constructor. They are more structured and can have a state associated with them. While in contrast, default method can be implemented only in the terms of invoking other interface methods, with no reference to a particular implementation's state. Hence, both use for different purposes and choosing between two really depends on the scenario context.
+
+
+->When a class extend an interface it is not mandatory to provide implementation of default method of interface.
+
+->Important points about java interface default methods:
+
+1. Java interface default methods will help us in extending interfaces without having the fear of breaking implementation classes.
+2. Java interface default methods has bridge down the differences between interfaces and abstract classes.
+3. Java 8 interface default methods will help us in avoiding utility classes, such as all the Collections class method can be provided in the interfaces itself.
+4.Java interface default methods will help us in removing base implementation classes, we can provide default implementation and the implementation classes can chose which one to override.
+5.One of the major reason for introducing default methods in interfaces is to enhance the Collections API in Java 8 to support lambda expressions.
+6.If any class in the hierarchy has a method with same signature, then default methods become irrelevant. A default method cannot override a method from java.lang.Object. The reasoning is very simple, it’s because Object is the base class for all the java classes. So even if we have Object class methods defined as default methods in interfaces, it will be useless because Object class method will always be used. That’s why to avoid confusion, we can’t have default methods that are overriding Object class methods.
+7.Java interface default methods are also referred to as Defender Methods or Virtual extension methods.
+
+->Important points about java interface static methods:
+1.Java interface static method is part of interface, we can’t use it for implementation class objects.
+2.Java interface static methods are good for providing utility methods, for example null check, collection sorting etc.
+3.Java interface static method helps us in providing security by not allowing implementation classes to override them.
+4.We can’t define interface static method for Object class methods, we will get compiler error as “This static method cannot hide the instance method from Object”. This is because it’s not allowed in java, since Object is the base class for all the classes and we can’t have one class level static method and another instance method with same signature.
+5.We can use java interface static methods to remove utility classes such as Collections and move all of it’s static methods to the corresponding interface, that would be easy to find and use.
+Java Functional Interfaces
+
+------------------------------------------------------------Streams -----------------------------------------------------------
+Stream is a new abstract layer introduced in java 8.Using stream we can process the data in a declarative way similar to SQL statements.Stream represents a sequence of objects from a source, which supports aggregate operations. Following are the characteristics of a Stream −
+
+1.Sequence of elements − A stream provides a set of elements of specific type in a sequential manner. A stream gets/computes elements on demand. It never stores the elements.
+
+2.Source − Stream takes Collections, Arrays, or I/O resources as input source.
+
+3.Aggregate operations − Stream supports aggregate operations like filter, map, limit, reduce, find, match, and so on.
+
+4.Pipelining − Most of the stream operations return stream itself so that their result can be pipelined. These operations are called intermediate operations and their function is to take input, process them, and return output to the target. collect() method is a terminal operation which is normally present at the end of the pipelining operation to mark the end of the stream.
+
+5.Automatic iterations − Stream operations do the iterations internally over the source elements provided, in contrast to Collections where explicit iteration is required.
+
+->With java8 collections interface have two methods to generate a stream.
+
+1.stream()- Returns a sequential stream considering collection as its source.
+
+2.parallelStream()- Returns a parallel stream considering collection as its source.
+
+->forEach()-stream has provided a new method ‘forEach’ to iterate each element of the stream. 
+
+->map()-The ‘map’ method is used to map each element to its corresponding result.
+
+->filter()-The ‘filter’ method is used to eliminate elements based on a criteria.
+
+->limit()-The ‘limit’ method is used to reduce the size of the stream.
+
+->sorted()-The ‘sorted’ method is used to sort the stream. 
+
+->ParallelProcessing()-parallelStream is the alternative of stream for parallel processing. 
+
+->Collectors-Collectors are used to combine the result of processing on the elements of a stream. Collectors can be used to return a list or a string.
+
+->Statistics-With Java 8, statistics collectors are introduced to calculate all statistics when stream processing is being done.
+
+Stream operations are itermediate or terminal. Intermediate operations return a stream so we can chain multiple intermediate operations without using semicolons. Terminal operations are either void or return a non-stream result. 
+
+------------------------------------------------------Optional----------------------------------------------------------------
+
+Optional is a container object which is used to contain non-null objects.Optional object is used to represent null with absent value.This class has various utility methods to facilitate code to handle values as ‘available’ or ‘not available’ instead of checking null values.
+
+
+------------------------------------------------------Nashron------------------------------------------------------------------
+
+Nashorn, a much improved javascript engine is introduced, to replace the existing Rhino. Nashorn provides 2 to 10 times better performance, as it directly compiles the code in memory and passes the bytecode to JVMNashorn uses invokedynamics feature, introduced in Java 7 to improve performance.
+
+jjs
+For Nashorn engine, JAVA 8 introduces a new command line tool, jjs, to execute javascript codes at console.
+
+--------------------------------------------------------Date Time API-----------------------------------------------------------
+
+With Java 8, a new Date-Time API is introduced to cover the following drawbacks of old date-time API −
+
+Not thread safe − java.util.Date is not thread safe, thus developers have to deal with concurrency issue while using date. The new date-time API is immutable and does not have setter methods.
+
+Poor design − Default Date starts from 1900, month starts from 1, and day starts from 0, so no uniformity. The old API had less direct methods for date operations. The new API provides numerous utility methods for such operations.
+
+Difficult time zone handling − Developers had to write a lot of code to deal with timezone issues. The new API has been developed keeping domain-specific design in mind.
+
+Following are some of the important classes in java.time package:
+1.Local-Simplified date-time API with no complexity of time zone handling
+2.Zoned-Specalized time zone API with different time zones.
+
+A toInstant() method is added to the original Date and Calendar objects, which can be used to convert them to the new Date-Time API. Use an ofInstant(Insant,ZoneId) method to get a LocalDateTime or ZonedDateTime object
+
+->Following classes we have in Date Time API are:Date ,LocalDate,Period,Duration,ZoneId,ZonedDateTime,ChronoUnit
+
+----------------------------------------------------------- Base 64 -----------------------------------------------------------
+With Java 8, Base64 has finally got its due. Java 8 now has inbuilt encoder and decoder for Base64 encoding .In Java 8, we can use three types of Base64 encoding −
+
+Simple − Output is mapped to a set of characters lying in A-Za-z0-9+/. The encoder does not add any line feed in output, and the decoder rejects any character other than A-Za-z0-9+/.
+
+URL − Output is mapped to set of characters lying in A-Za-z0-9+_. Output is URL and filename safe.
+
+MIME − Output is mapped to MIME friendly format. Output is represented in lines of no more than 76 characters each, and uses a carriage return '\r' followed by a linefeed '\n' as the line separator. No line separator is present to the end of the encoded output.
+
+--------------------------------------------------------------------------------------------------------------------------------
+JAVA 7:
+
+The important features introduced in java7 are:
+
+1.Diamond Operator:
+
+We used to have declarations like below until java 1.6
+
+     Map<Object,Object>  mpObj = new HashMap<Object,Object>();
+                           
+Here,if you would observe , there is a repetition of both on the left hand side and right hand side.Hence with Java 1.7 , you don't have to do a repeat on the right hand side.This means you can do something like this on the code.  
+    
+    Map<Object,Object>  mpObj = new HashMap<>();
+
+Because  of the symbol  hence created , the name "Diamond Operator" was coined in by Ronaldinho  
+
+2.Use of Strings in Switch statements.
+
+3.Automatic Resource Management:This means that the management of resources will not be anymore done by developers.   
+
+4.Multiple catch statements
+
+5.Try with resources
+
+6.binary literals:In JDK 7, you can express literal values in binary with prefix '0b' (or '0B') for integral types (byte, short, int and long), similar to C/C++ language. Before JDK 7, you can only use octal values (with prefix '0') or hexadecimal values (with prefix '0x' or '0X').
+
+7.Fork and join framework:The fork/join framework is an implementation of the ExecutorService interface that allows you to take advantage of multiple processors available in modern servers. It is designed for work that can be broken into smaller pieces recursively. The goal is to use all the available processing power to enhance the performance of your application. As with any ExecutorService implementation, the fork/join framework distributes tasks to worker threads in a thread pool. The fork join framework is distinct because it uses a work-stealing algorithm, which is very different than producer consumer algorithm. Worker threads that run out of things to do can steal tasks from other threads that are still busy. The centre of the fork/join framework is the ForkJoinPool class, an extension of the AbstractExecutorService class. ForkJoinPool implements the core work-stealing algorithm and can execute ForkJoinTask processes. You can wrap code in a ForkJoinTask subclass like RecursiveTask (which can return a result) or RecursiveAction.
+
+Fork-join functionality is achieved by ForkjoinTask object, it has two method fork() and join () Method.
+
+The fork() method allows  a new ForkJoinTask to be launched from an existing one.
+The join() method allows a ForkJoinTask to wait for the completion of another one.
+
+The important classes in Fork and Join framework:
+1.ForkJoinPool: An instance of this class is used to run all your fork-join tasks in the whole program.
+2.RecursiveTask<V>: You run a subclass of this in a pool and have it return a result; see the examples below.
+3.RecursiveAction: just like RecursiveTask except it does not return a result
+4.ForkJoinTask<V>: superclass of RecursiveTask<V> and RecursiveAction. fork and join are methods defined in this class. You won't use this class directly, but it is the class with most of the useful javadoc documentation, in case you want to learn about additional methods
+
+frameworks that would distribute the work across multiple cores and then join them to return the result set.This feature is known as Fork and Join framework.
+
+->The core classes supporting the Fork-Join mechanism are ForkJoinPool and ForkJoinTask.
+
+->Fork Join pool:
+The ForkJoinPool is basically a specialized implementation of ExecutorService implementing the work-stealing algorithm we talked about above. We create an instance of ForkJoinPool by providing the target parallelism level i.e. the number of processors
+Although you specify any initial pool size, the pool adjusts its size dynamically in an attempt to maintain enough active threads at any given point in time. Another important difference compared to other ExecutorService's is that this pool need not be explicitly shutdown upon program exit because all its threads are in daemon mode.
+
+There are three different ways of submitting a task to the ForkJoinPool.
+
+1) execute() method //Desired asynchronous execution; call its fork method to split the work between multiple threads.
+2) invoke() method: //Await to obtain the result; call the invoke method on the pool.
+3) submit() method: //Returns a Future object that you can use for checking status and obtaining the result on its completion.
+
+->ForkJoinTask:This is an abstract class for creating tasks that run within a ForkJoinPool. The Recursiveaction and RecursiveTask are the only two direct, known subclasses of ForkJoinTask. The only difference between these two classes is that the RecursiveAction does not return a value while RecursiveTask does have a return value and returns an object of specified type.
+
+The ForkJoinTask class provides several methods for checking the execution status of a task. The isDone() method returns true if a task completes in any way. The isCompletedNormally() method returns true if a task completes without cancellation or encountering an exception, and isCancelled() returns true if the task was cancelled. Lastly, isCompletedabnormally() returns true if the task was either cancelled or encountered an exception
+
+8. Java NIO 2.0:
+Java SE 7 introduced java.nio.file package and its related package, java.nio.file.attribute, provide comprehensive support for file I/O and for accessing the default file system. It also introduced the Path class which allow you to represent any path in operating system. New File system API complements older one and provides several useful method checking, deleting, copying, and moving files. for example, now you can check if a file is hidden in Java. You can also create symbolic and hard links from Java code.  JDK 7 new file API is also capable of searching for files using wild cards. You also get support to watch a directory for changes.
+
+9.G1 Garbage collector:
+JDK 7 introduced a new Garbage Collector known as G1 Garbage Collection, which is short form of garbage first. G1 garbage collector performs clean-up where there is most garbage. To achieve this it split Java heap memory into multiple regions as opposed to 3 regions in the prior to Java 7 version (new, old and permgen space). It's said that G1 is quite predictable and provides greater through put for memory intensive applications.
+
+10.More precise of re-throwing an exception:
+
+The Java SE 7 compiler performs more precise analysis of rethrown exceptions than earlier releases of Java SE. This enables you to specify more specific exception types in the throws clause of a method declaration.
+Consider the following example:
+  static class FirstException extends Exception { }
+  static class SecondException extends Exception { }
+
+  public void rethrowException(String exceptionName) throws Exception {
+    try {
+      if (exceptionName.equals("First")) {
+        throw new FirstException();
+      } else {
+        throw new SecondException();
+      }
+    } catch (Exception e) {
+      throw e;
+    }
+  }
+
+This examples's try block could throw either FirstException or SecondException. Suppose you want to specify these exception types in the throws clause of the rethrowException method declaration. In releases prior to Java SE 7, you cannot do so. Because the exception parameter of the catch clause, e, is type Exception, and the catch block rethrows the exception parameter e, you can only specify the exception type Exception in the throwsclause of the rethrowException method declaration.
+However, in Java SE 7, you can specify the exception types FirstException and SecondException in the throws clause in the rethrowException method declaration. The Java SE 7 compiler can determine that the exception thrown by the statement throw e must have come from the try block, and the only exceptions thrown by the try block can be FirstException and SecondException. Even though the exception parameter of the catch clause,e, is type Exception, the compiler can determine that it is an instance of either FirstException or SecondException:
+  public void rethrowException(String exceptionName)
+  throws FirstException, SecondException {
+    try {
+      // ...
+    }
+    catch (Exception e) {
+      throw e;
+    }
+  }
+This analysis is disabled if the catch parameter is assigned to another value in the catch block. However, if the catch parameter is assigned to another value, you must specify the exception type Exception in the throws clause of the method declaration
+
+
+
+-------------------------------------------------------------------JAVA 6 -----------------------------------------------------
+
+New features in java 6:
+
+1. Support for scripting languages.
+2.JDBC 4.0 API
+3.Java compiler API
+4.Pluggable annotations.
+5.Integrated web services- easy way of creating web services and exposing a webservice with an annotation
+6.Native PKI,Java GSS,kerberos and LDAP support
+7.Rhino-Framework to connect java programs to scripting language interpreters.Rhino JS engine comes with java6
+
+New features:
+1.A feature or an enhancement in Java is encapsulated in the form of a JSR. JSR, which stands for Java Specification Request is nothing but a formal proposal which details the need for a specific functionality to be available in the JavaPlatform that can be used by Applications. These JSR’s will be reviewed and released by a committee called JavaExpert Groups (JEG). This article covers the following list of features (or JSRs') that comes along with the Java 6 Platform.
+1.Pluggable Annotation Processing API (JSR 269)
+2.Common Annotations (JSR 250)
+3.Java API for XML Based Web Services - 2.0 (JSR 224)
+4.JAXB 2.0 (JSR 222)
+5.Web Services Metadata (JSR 181)
+6.Streaming API for XML (JSR 173)
+7.XML Digital Signature (JSR 105)
+8.Java Class File Specification Update (JSR 202)
+9.Java Compiler API (JSR 199)
+10.JDBC 4.0 (JSR 221)
+11.Scripting in the Java Platform (JSR 223)
+
+
+-----------------------------------------------------------------JAVA 5 features-------------------------------------------------
+
+1. for each loop:The enhanced for-loop is just a convenience from the programmer’s point of view for iterating over the Collection
+
+2.variable arguments:Internally a variable argument is maintained as an array that can hold zero or one or more arguments of the same type.
+
+3.static imports -Static Imports is all about importing all the static Entities – like static classes, static methods and static objects and directly accessing them in code
+
+4.enum-Enum in java is a data type that contains fixed set of constants.
+
+It can be used for days of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , directions (NORTH, SOUTH, EAST and WEST) etc. The java enum constants are static and final implicitly. It is available from JDK 1.5.
+
+Java Enums can be thought of as classes that have fixed set of constants.
+
+Points to remember for Java Enum
+
+enum improves type safety
+enum can be easily used in switch
+enum can be traversed
+enum can have fields, constructors and methods
+enum may implement many interfaces but cannot extend any class because it internally extends Enum class
+
+5.Autoboxing and unboxing-The automatic conversion of primitive data types into its equivalent Wrapper type is known as autoboxing and opposite operation is known as unboxing. 
+
+6.Annotations-Java Annotation is a tag that represents the metadata i.e. attached with class, interface, methods or fields to indicate some additional information which can be used by java compiler and JVM.
+
+Annotations in java are used to provide additional information, so it is an alternative option for XML and java marker interfaces.
+
+Builtin annotations:ovverride,suppressedwarning,deprecated
+
+->@Override annotation assures that the subclass method is overriding the parent class method. If it is not so, compile time error occurs.Sometimes, we does the silly mistake such as spelling mistakes etc. So, it is better to mark @Override annotation that provides assurity that method is overridden.
+
+->@SuppressWarnings annotation: is used to suppress warnings issued by the compiler.
+
+->@Deprecated annoation marks that this method is deprecated so compiler prints warning. It informs user that it may be removed in the future versions. So, it is better not to use such methods.
+
+7.Generics in Java:The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects.
+
+8.Covariant Return type:The covariant return type specifies that the return type may vary in the same direction as the subclass.
+Java 1.5 supports covariant return types. What does this mean? Before 1.5, when you override a superclass method, the name, argument types and return type of the overrding method has to be exactly same as that of superclass method. Overriding method is said to be invariant with respect to argument types and return type
+
+Before Java5, it was not possible to override any method by changing the return type. But now, since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type.Also, before 1.5, overriding method can't have different return type. This is relaxed in 1.5. The subclass method's return type R2 may be different from superclass method's return type R1, but R2 should be a subtype of R1. i.e., subclass can return type may be a subtype of superclass return type.
+
+Covariant return, means that when one overrides a method, the return type of the overriding method is allowed to be a subtype of the overridden method's return type.
+
+9. Generics:
+Before generics, we can store any type of objects in collection i.e. non-generic. Now generics, forces the java programmer to store specific type of objects.
+
+-----------------------------------------------------------JAVA 4--------------------------------------------------------------
+Introduction of assertion methods which is used in testing
+
+
+
+
+
