@@ -1,0 +1,136 @@
+->Gradle:
+Gradle is open,advance general purpose build management system.It is built on Ant,maven and ivy repositories.It supports Groovy based Domain Specific Language over XML.Gradle is a build tool based on Java.
+
+->Gradle is implemented in Groovy:
+Gradle is implemented using Groovy, and Gradle build scripts are actually Groovy scripts. Groovy is a programming language that runs on the Java Virtual Machine (JVM).That Gradle scripts are Groovy scripts doesn't mean that you have to program every build script from the bottom up. Gradle comes with a sensible set of defaults which makes it reasonably fast to write a basic Gradle script.
+
+->Gradle Core Concepts:
+The Gradle core concepts are:
+
+1.Projects
+2.Tasks- each task is available as a property of the project.
+3.Build scripts
+A project is typically some software you want to build. Tasks are actions needed to build the project. A task could be compiling the source code, generating JavaDoc, zipping the compiled classes into a JAR file etc. A Gradle project contains one or more tasks to execute in order to build the project.
+
+A project typically has a build script in which its tasks are defined. The build script is used by the gradle command so it can know what tasks are defined for the project.
+
+The build script is typically called build.gradle and is normally located in the root directory of the project you are building. When the gradle command is executed it looks in the directory which the command is executed in, for the build script to execute.
+
+->Gradle features:
+1. Declarative builds and build by convention.
+2.Language for dependecy based programming
+3.Structure your build
+4. Deep API
+5. Gradle scales- Gradle can increase productivity from single to multiple project builds.
+6. Multiple Project builds- Gradle supports multiple project builds and also parallel builds.
+7.Different ways to manage your builds
+8. First Build Integration tool-completely support maven,ant and ivy repositories
+9. Ease of Migration- Gradle can adopt to any structure easily
+10. Gradlewrapper-Gradle Wrapper allows you to execute Gradle builds on machines where Gradle is not installed.
+11. Free Open source
+
+->Gradle builds a script for handling two things: one is project and the other is task.Each build script of gradle is encoded with UTF-8,saved offline and named as build.gradle
+
+->you can run gradle build using gradle commands.
+
+->Gradle script uses mainly two objects: project object and script object.
+Project Object − Each script describes about one or multiple projects. While in the execution, this script configures the Project Object. You can call some methods and use property in your build script which are delegated to the Project Object.
+
+Script Object − Gradle takes script code into classes, which implements Script Interface and then executes. This means that of all the properties and methods declared by the script interface are available in your script.
+
+->List of standard project properties:
+project,name,path,description,projectDir,buildDir,group,version,ant
+
+->Groovy JDK commands:
+Groovy adds lots of useful methods to the standard Java classes. For example, Iterable API from JDK implements an each() method which iterates over the elements of the Iterable Interface.
+
+->Property Accessors: You can access the getter and setter  methods of a property
+
+->Optional paranthesis on method calls
+
+->closure as the last parameter of the method
+
+->Default imports of gradle scripts
+
+->you can add description to a task and description is executed when the task is executed
+
+->Skipping task:Skipping tasks can be done by passing a predicate closure. This is possible only if method of a task or a closure throwing a StopExecutionException before the actual work of a task is executed.
+
+->Declaring your dependencies:
+Gradle follows some special syntax to define dependencies. The following script defines two dependencies, one is Hibernate core 3.6.7 and second one is Junit with the version 4.0 and later. Take a look at the following code. Use this code in build.gradle file.
+
+apply plugin: 'java'
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+   compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+   testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+Different Dependency configurations:compile,run time,Test compile,Test Runtime
+
+
+->Repositories:
+While adding external dependencies. Gradle looks for them in a repository. A repository is just a collection of files, organized by group, name and version. By default, Gradle does not define any repositories. We have to define at least one repository explicitly. The following code snippet defines how to define maven repository. Use this code in build.gradle file.
+
+repositories {
+   mavenCentral()
+}
+Following code is to define remote maven. Use this code in build.gradle file.
+
+repositories {
+   maven {
+      url "http://repo.mycompany.com/maven2"
+   }
+}
+
+->Publishing artifacts:
+Dependency configurations are also used to publish files. These published files are called artifacts. Usually, we use plug-ins to define artifacts. However, you do need to tell Gradle where to publish the artifacts. You can achieve this by attaching repositories to the upload archives task. Take a look at the following syntax for publishing Maven repository. While executing, Gradle will generate and upload a Pom.xml as per the project requirements. Use this code in build.gradle file.
+
+apply plugin: 'maven'
+
+uploadArchives {
+   repositories {
+      mavenDeployer {
+         repository(url: "file://localhost/tmp/myRepo/")
+      }
+   }
+}
+
+->Gradle plugins:
+A plugin is nothing but a set of tasks, almost all useful tasks such as compiling tasks, setting domain objects, setting up source files, etc. are handled by plugins. Applying a plugin to a project, allows the plugin to extend the project’s capabilities.Plugins can −
+1.Extend the basic Gradle model (e.g. add new DSL elements that can be configured).
+2.Configure the project according to conversions (e.g. add new tasks or configure sensible defaults).
+3.Apply specific configuration (e.g. add organizational repositories or enforce standards).
+
+There are two types of plugins binary plugins and script plugins
+
+->while excluding a task from execution you can use -x along with the gradle  command
+
+->-b option can be used to select a particular build
+
+->You can list the projects and tasks using gradle -q projects and gradle -q tasks
+
+->Why Gradle?
+Today, we work on large projects that need automated release process to mitigate risks and failures; a building system as Gradle, permits you to structure a process from the compilation to the deployment in your application server. This approach has several advantages, like spending time on more important tasks for our project (like modeling and coding features) and delegating repetitive tasks to Gradle, or also the use of Groovy dynamic language scripts (DSL) instead of too long xml files.
+If you want to do continuous delivery and make your release process automatic, Gradle is a nice tool to carry out these goals.
+
+->Default task:
+Another important concept is the Default Tasks, which are the tasks that run if no task name indicated.
+
+->Abbreviated task execution:
+In Gradle, if our task’s name is so long, we don’t need to write the complete name to execute them, only specifying the initials in a camelCase format can execute the tasks.
+
+----------------------------------------------Gradle V/S Maven  -------------------------------------------
+
+Gradle uses existing ant,maven and ivy repositories.
+Gradle can be used for multi project builds.
+Gradle and maven build times are close enough.
+Maven build scripts are XML and Gradle scripts are built using DSL i.e Groovy as a result gradle scripts tend to be much shorter and clearer.
+Maven can contain hundreds of plugins and even you can create your own plugin.In Gradle thoght the creation of plugin is easy but the availability of the plugin is not easy.
+Maven can integrate with almost all developer tools.Gradle lacks the App server and CI categories.
+aar format support in gradle make integration to android libraries easier.
+Gradle allows easier version management using dynmaic version concept
+
