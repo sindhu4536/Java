@@ -1,0 +1,40 @@
+1.Bubble Sort-Adjacent elements are compared.Inefficient for large data.Bubble sort is stable and adaptive.
+Best case:O(n) for almost sorted array
+Average and worsrt case -O(n^2)
+A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input array to be sorted. 
+
+2.Selection sort-Array is imaginarly divided into sorted and unsorted.Beginning sorted array is empty but unsorted array consist of whole array.For every step the number of elements in the unsorted array is decreased by 1.Selection sort takes n-1 swapes atmost makes it very effective in situations where write operation is significantly more expensive.
+
+complexity:O(n^2)
+
+3.Insertion sort:Every element is compared with the elements before it.Stable-relative order of elements is maintained.
+best case:O(n)
+average and worst case:O(n^2)
+
+4.Merge Sort:
+Main operation is merge and stable algorithm.
+->Any merge operation needs (2n-1) comparisons in worst case.
+->time complexity is O(nlgn)
+
+5.Heap sort:Main operations:1.build max-heap O(n) 2.max-heapify O(lgn)
+time complexity for all the cases:O(nlgn)
+
+6.QuickSort:
+A pivot element is required.The partition procedure requires (n-1) comparisons.
+The best and average time complexity is O(nlgn).Worst case is O(n^2).unstable algorithm.
+
+7.counting sort:
+counting the number of elements.elemnts should be in the range 0 to k.Maintain the count  of elements in an array of size k.complexity is O(n+k) = O(n)
+
+8.Radix sort :The sort is performed from right to left.Complexity O(d(n+k)) d-number of digits,k -possible values for each digit.
+
+9.Bucket sort-Range of numbers are from 0 to 1.The interval is divided into n equal size buckets.
+Best and aveerag:O(n+k),worst:O(n^2)
+
+10.Comb sort:Improves on bubble sort.Basic idea is to eliminate small values at the end of the list.Gap in the comb sort can be more than 1.turttles rabbit concept.
+average case complexity is O(n^2)
+
+11.Shell sort-comparison sort (unstable)
+The method starts by sorting pair of elements far a part from each other then progressively reducing the gap btween the elements to be compared.
+
+best case:O(nlgn),worst cae:O(n^2)
